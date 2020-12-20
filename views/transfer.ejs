@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- ===============================================-->
+    <!--    Document Title-->
+    <!-- ===============================================-->
+    <title>BB  || Transfer </title>
+        <!-- ===============================================-->
+    <!--    Stylesheets-->
+    <!-- ===============================================-->
+    <link href="../stylesheets/theme.css" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+<!-- ===============================================-->
+<!--    Main Content-->
+<!-- ===============================================-->
+<main class="main" id="top">
+
+
+    <div class="container" data-layout="container">
+        <div class="content">
+            <div class="row no-gutters">
+                <div class="col-lg-8 pr-lg-2">
+                    <div class="card mb-3 mt-4">
+                        <div class="card-header">
+                            <h5 class="mb-0"><a href="/" class="btn btn-warning" > << Back to  Home</a> <br><b><%=user.name%></b> Details</h5>
+                        </div>
+                        <div class="card-body bg-light">
+                                <div class="col-sm-6">
+                                    <div class="text">
+                                        <span class="text text-primary">  <%=user.name%></span>
+                                    </div>
+                                    <div class="card-body"><%=user.email%>
+                                    </div>
+                                    <div class="card-body">
+                                        $<%=user.currentBalance%>
+                                    </div>
+                                </div>
+                            <hr>
+                            <!--                                records-->
+                            <div class="dashboard-data-table bg-soft-light">
+                                <div class="text text-primary ml-3">Records</div>
+                                <%if(records){%>
+                                <table class="table table-sm table-dashboard fs--1 data-table border-bottom" data-options='{"responsive":false,"pagingType":"simple","lengthChange":false,"searching":false,"pageLength":8,"columnDefs":[{"targets":[0,6],"orderable":false}],"language":{"info":"_START_ to _END_ Items of _TOTAL_ — <a href=\"#!\" class=\"font-weight-semi-bold\"> view all <span class=\"fas fa-angle-right\" data-fa-transform=\"down-1\"></span> </a>"},"buttons":["copy","excel"]}'>
+                                    <thead class="bg-200 text-900">
+                                    <tr>
+                                        <th class="sort pr-2 align-middle">Balance</th>
+                                        <th class="sort pr-1 align-middle">Sender</th>
+                                        <th class="sort pr-1 align-middle">Date</th>
+                                    </tr>
+                                    </thead>
+
+                                    <%records.forEach (record =>{%>
+                                    <tr class="btn-reveal-trigger">
+                                        <th class="align-middle text-warning">$<%=record.balance%></th>
+                                        <td class="align-middle text-success" >Sender</td>
+                                        <td class="align-middle text-1100" ><%=(record.createdAt).toLocaleString()%></td>
+                                    </tr>
+                                    <%})%>
+
+                                    <%}else {%>
+                                        <div class="text text-secondary">
+                                            No records
+                                        </div>
+                                    <%}%>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+<!--                transfer form -->
+                <div class="col-lg-4 pl-lg-2">
+                    <div class="sticky-top sticky-sidebar">
+                        <div class="card mb-3 mb-lg-0">
+                            <div class="card-header">
+                                <h5 class="mb-0">Transfer money to <b> <%=user.name%></b></h5>
+                            </div>
+                            <div class="card-body bg-light">
+                                <div class="form-group">
+                                    <form action="/<%= user._id%>/transfer" class="form" method="post">
+                                        <input type="text" name="amount" placeholder="Amount" class="form-control">
+                                        <button class=" mt-2 btn btn-primary">Transfer</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- ===============================================-->
+<!--    End of Main Content-->
+<!-- ===============================================-->
+
+
+
+
+<!-- ===============================================-->
+<!--    JavaScripts-->
+<!-- ===============================================-->
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+</body>
+
+</html>
